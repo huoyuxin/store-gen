@@ -4,7 +4,7 @@ const program = require("commander");
 
 program.version("0.1.0").description("auto generate action.ts with config.js");
 
-program.command("a <configPath>").action(configPath => {
+program.command("p <configPath>").action(configPath => {
   const getConfig = require("./config");
   const { writeFile } = require("./util");
   const genAction = require("./action");

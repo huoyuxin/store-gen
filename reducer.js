@@ -20,7 +20,6 @@ export function reducer(
 ) {
   switch (action.type) {
     ${actions
-      .filter(n => n.http)
       .map(
         ({ enumKey }) =>
           `
