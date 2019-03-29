@@ -23,7 +23,7 @@ export enum ${config.pageFirstUpper}ActionEnum {
           `export class ${name} implements Action {
                 readonly type = ${config.pageFirstUpper}ActionEnum.${enumKey};
                 ${
-                  param && !http
+                  param
                     ? `constructor(public ${param.name}: ${param.type ||
                         "any"}) {}`
                     : ""
