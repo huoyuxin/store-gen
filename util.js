@@ -1,4 +1,5 @@
 const fs = require("fs");
+const prettier = require("prettier");
 function getFirstUpperArr(str) {
   return str.split(" ").map(n => n[0].toUpperCase() + n.slice(1));
 }
@@ -15,14 +16,23 @@ function getCamel(str) {
 }
 
 function writeFile(filePath, type, content) {
-  fs.writeFile(`${filePath}.${type}.ts`, content, () => {
-    console.log(
-      `------
+  fs.writeFile(
+    `${filePath}.${type}.ts`,
+    prettier.format(content, {
+      semi: true,
+      parser: "typescript",
+      singleQuote: true,
+      trailingComma: "es5"
+    }),
+    () => {
+      console.log(
+        `------
         you generate ${type} with: 
       ${filePath}`
-    );
-    process.exit(1);
-  });
+      );
+      process.exit(1);
+    }
+  );
 }
 
 module.exports = {
