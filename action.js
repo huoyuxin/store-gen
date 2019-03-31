@@ -23,9 +23,10 @@ export enum ${config.pageFirstUpper}ActionEnum {
           `export class ${name} implements Action {
                 readonly type = ${config.pageFirstUpper}ActionEnum.${enumKey};
                 ${
-                  param
-                    ? `constructor(public ${param.name}: ${param.type ||
-                        "any"}) {}`
+                  param && param.length
+                    ? `constructor(${param
+                        .map(p => `public ${p.name}: ${p.type || "any"}`)
+                        .join(",")}) {}`
                     : ""
                 }
            };`
